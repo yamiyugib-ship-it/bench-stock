@@ -13,7 +13,7 @@ npm start
 
 Open [Bench Stock locally](http://127.0.0.1:3000). The first run creates a local PostgreSQL data directory using PGlite. Data persists across restarts. To use a separate PostgreSQL instance locally, copy `.env.example` to `.env` and set `DATABASE_URL`.
 
-Try adding `Clay bags` with quantity `5`. Under **Adjust**, record **Stock out** for `2` units. The list shows `3`. Try removing `4` units and check that the app rejects the request and still shows `3` after refreshing.
+Try adding a supply with a new name, such as `Glaze jars`, and a quantity of `5`. Under **Adjust**, record **Stock out** for `2` units. The list shows `3`. Try removing `4` units and check that the app rejects the request and still shows `3` after refreshing.
 
 ## Architecture
 
@@ -30,15 +30,17 @@ The local server also serves the frontend for convenience. In production the fro
 
 | Link | Status |
 | --- | --- |
-| Public GitHub repository | Pending publication |
-| Frontend | Pending deployment |
-| Backend `/api/health` | Pending deployment |
+| Public GitHub repository | [Bench Stock source](https://github.com/yamiyugib-ship-it/bench-stock) |
+| Frontend | [Open Bench Stock](https://bench-stock.onrender.com/) |
+| Backend `/api/health` | [Check API and database](https://bench-stock-api.onrender.com/api/health) |
+
+The free Render web service may take about a minute to wake after inactivity. [Render Free instances](https://render.com/docs/free#spinning-down-on-idle)
 
 1. Upload this folder to a public GitHub repository. Include `.env.example` and keep local `.env` files out of Git.
 2. Create a PostgreSQL database in Neon. Copy its connection URL from **Connect** into the backend environment only. The API creates the table on startup.
 3. Create a **Web Service** in Render from the repository. Choose the Node runtime and leave the root directory as the repository root. Use `npm ci --omit=dev` to build, `npm start` to run, and `/api/health` as the health check path. Set `NODE_ENV=production`, `DATABASE_URL`, and `FRONTEND_ORIGIN`. For the first deploy, use `https://example.invalid` as the temporary value of `FRONTEND_ORIGIN`.
 4. Create a **Static Site** in Render from the same repository. Use `npm run build:frontend` as the build command and `frontend/dist` as the publish directory. Set `API_BASE_URL` to the public HTTPS origin of the backend, without `/api`.
-5. Replace `FRONTEND_ORIGIN` on the backend with the actual static site HTTPS origin and redeploy. Check the health URL and run the example above from the public frontend. Add the three verified links to this table, then submit the public GitHub and frontend links in the campus.
+5. Replace `FRONTEND_ORIGIN` on the backend with the actual static site HTTPS origin and redeploy. Check the health URL and run the example above from the public frontend. Submit the public GitHub and frontend links in the campus.
 
 The hosted inventory is a shared classroom demo. Use fictional supply data.
 
