@@ -1,0 +1,194 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #292434;
+  background: #f5f3f8;
+  --ink-subtle: #5d566b;
+  --border: #dbd6e3;
+  --accent: #583b85;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; }
+
+.wrapper {
+  width: min(100% - 2rem, 64rem);
+  margin-inline: auto;
+}
+
+.top-bar {
+  background: #2c203e;
+  color: #fff;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  min-height: 4.25rem;
+  font-weight: 650;
+}
+
+.brand-mark {
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 2px solid #dbbbf4;
+  border-radius: .45rem;
+  background: repeating-linear-gradient(135deg, transparent 0 5px, #dbbbf4 5px 7px);
+}
+
+main { padding-block: 2.5rem; }
+
+h1, h2, p { margin: 0; }
+
+h1 {
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.9rem, 5vw, 2.75rem);
+  font-weight: 710;
+  letter-spacing: -.035em;
+}
+
+h2 { font-size: 1.2rem; }
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(16rem, .8fr) minmax(0, 1.5fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.card, dialog {
+  border: 1px solid var(--border);
+  border-radius: .9rem;
+  padding: 1.25rem;
+  background: #fff;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+.count {
+  min-width: 1.6rem;
+  padding: .1rem .38rem;
+  background: #eee7f5;
+  color: #4f366f;
+  border-radius: 1rem;
+  text-align: center;
+  font-size: .875rem;
+  font-weight: 650;
+}
+
+form { display: grid; }
+
+label {
+  margin-block: 1rem .4rem;
+  font-size: .94rem;
+  font-weight: 600;
+}
+
+input, select, button { font: inherit; }
+
+input, select {
+  width: 100%;
+  min-height: 2.65rem;
+  border: 1px solid #a9a0b5;
+  border-radius: .5rem;
+  padding: .45rem .65rem;
+  background: #fff;
+  color: inherit;
+}
+
+select {
+  appearance: none;
+  padding-right: 1.8rem;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-subtle) 50%),
+    linear-gradient(135deg, var(--ink-subtle) 50%, transparent 50%);
+  background-position: calc(100% - 16px) 53%, calc(100% - 11px) 53%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+
+button {
+  border: 1px solid transparent;
+  border-radius: .5rem;
+  padding: .55rem .85rem;
+  min-height: 2.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary { background: var(--accent); color: #fff; }
+.primary:hover:not(:disabled) { background: #462c6d; }
+.secondary { background: #fff; color: #503773; border-color: #bcb1cd; }
+.secondary:hover:not(:disabled) { background: #f5effa; }
+button:disabled { opacity: .65; cursor: wait; }
+:focus-visible { outline: 3px solid #865bc1; outline-offset: 2px; }
+
+#add-form button, .retry { margin-top: 1.2rem; }
+
+.empty, .item-details {
+  margin-top: .85rem;
+  color: var(--ink-subtle);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: .7rem .25rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th { color: var(--ink-subtle); font-size: .875rem; }
+td:first-child { overflow-wrap: anywhere; }
+th:nth-child(2), td:nth-child(2) { text-align: right; font-variant-numeric: tabular-nums; }
+th:last-child, td:last-child { text-align: right; padding-left: .75rem; }
+tr:last-child td { border-bottom: 0; }
+
+.notice:not(:empty) {
+  margin-bottom: 1rem;
+  padding: .65rem .8rem;
+  border-radius: .5rem;
+  color: #1c553d;
+  background: #e6f4eb;
+  overflow-wrap: anywhere;
+}
+
+.notice.error:not(:empty), #adjust-error:not(:empty) {
+  color: #84273f;
+  background: #fbeaf0;
+}
+
+#adjust-error:not(:empty) { margin-block: .75rem 0; }
+
+dialog {
+  width: min(100% - 2rem, 26rem);
+  color: inherit;
+  box-shadow: 0 1rem 3rem #20133235;
+}
+
+dialog::backdrop { background: #251c36a0; }
+
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: .5rem;
+  margin-top: 1.2rem;
+}
+
+@media (max-width: 42rem) {
+  main { padding-block: 1.6rem; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+}

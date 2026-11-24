@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple stock tracker for ceramics studios.">
+    <title>Bench Stock | Workshop inventory</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="top-bar">
+      <div class="wrapper brand"><span class="brand-mark" aria-hidden="true"></span>Bench Stock</div>
+    </header>
+
+    <main class="wrapper">
+      <h1>Workshop inventory</h1>
+      <p class="notice" id="notice" role="status"></p>
+
+      <div class="layout">
+        <section class="card" aria-labelledby="add-heading">
+          <h2 id="add-heading">Add a supply</h2>
+          <form id="add-form">
+            <label for="name">Supply name</label>
+            <input id="name" name="name" maxlength="80" placeholder="e.g. Clay bags" required>
+            <label for="quantity">Starting quantity</label>
+            <input id="quantity" name="quantity" type="number" min="0" max="999999" step="1" value="0" required>
+            <button class="primary" type="submit" disabled>Add supply</button>
+          </form>
+        </section>
+
+        <section class="card inventory" aria-labelledby="stock-heading">
+          <div class="section-heading">
+            <h2 id="stock-heading">Supplies</h2>
+            <span class="count" id="supply-count" hidden></span>
+          </div>
+          <div class="empty" id="inventory-state" role="status">Loading inventory…</div>
+          <button class="secondary retry" id="retry" type="button" hidden>Retry</button>
+          <table id="supply-table" hidden>
+            <thead><tr><th scope="col">Name</th><th scope="col">Units</th><th scope="col">Stock</th></tr></thead>
+            <tbody id="supply-list"></tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+
+    <dialog id="adjust-dialog" aria-labelledby="adjust-heading">
+      <h2 id="adjust-heading">Adjust stock</h2>
+      <p id="adjust-item" class="item-details"></p>
+      <form id="adjust-form">
+        <label for="direction">Movement</label>
+        <select id="direction" name="direction" autofocus>
+          <option value="in">Stock in</option>
+          <option value="out">Stock out</option>
+        </select>
+        <label for="amount">Units</label>
+        <input id="amount" name="amount" type="number" min="1" max="999999" step="1" value="1" required>
+        <p class="notice" id="adjust-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button class="secondary" id="cancel" type="button">Cancel</button>
+          <button class="primary" type="submit">Save adjustment</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
